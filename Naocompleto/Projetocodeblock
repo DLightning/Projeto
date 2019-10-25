@@ -132,7 +132,7 @@ void menufilmes(){
         }else if(opcao==4){
             Tfilmes filmes=consultarfilmes();
               if(filmes.identificador==-1){
-                printf("Filme nao encontrado");
+                printf("\n--MOVIE NOT FOUND--\n");
               }else{
                 visualizarfilmes();
                 }
