@@ -1,0 +1,160 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define MAX_FILMES 100 //tamanho da lista de filmes
+#define MAX_CLIENTES 50
+
+typedef struct filmes{
+	int identificador;
+	char titulo[50];
+	int ano_producao;
+	char genero[50];
+};
+typedef struct filmes Tfilmes;
+
+Tfilmes lista_filmes[MAX_FILMES];
+int nfilmes=0;
+int encerrar=0;
+
+void cadastrarfilme(){
+  Tfilmes filmes;
+printf("\n   Pagina de Cadastro: \n\n");
+  printf("Digite o Titulo: ");
+   fflush(stdout);
+    gets(filmes.titulo);
+
+  printf("Digite o Genero: ");
+    fflush(stdout);
+    gets(filmes.genero);
+
+  printf("Digite o Ano de Producao: ");
+    fflush(stdout);
+  scanf("%i", &filmes.ano_producao);
+
+  printf("Digite o Identificador: ");
+  fflush(stdout);
+  scanf("%i", &filmes.identificador);
+  
+  lista_filmes[nfilmes]=filmes;
+	nfilmes++;
+}
+void listarfilmes(){
+    for (int i = 0; i < nfilmes; ++i) {
+		printf("%s\n", lista_filmes[i].titulo );
+    }
+}
+void visualizarfilmes(){ //nothing here yet
+
+}
+Tfilmes consultarfilmes(){
+    int identificador;
+    int c;
+    Tfilmes filmes;
+filmes.identificador=-1;
+    printf("Escreva o Identificador do Filme: ");
+    fflush(stdout);
+    scanf("%i",&identificador);
+    for(int i=0;i<nfilmes;i++){
+        if(lista_filmes[i].identificador==identificador){
+            filmes=lista_filmes[i];
+        }
+    }
+    while((c= getchar()) != '\n' && c != EOF){}
+	return filmes;
+}
+void editarfilmes(){ //nothing here yet
+
+}
+int menuprincialopcao(){
+    int opcao;
+    int c;
+
+	printf("\n     MENU INICIAL    \n\n");
+	printf("Selecionar [0] para Encerrar\n");
+	printf("Selecionar [1] para Menu Filmes\n");
+	printf("Selecionar [2] para Menu Clientes\n");
+	printf("-Escrever opcao: ");
+	scanf("%i",&opcao);
+	while((c= getchar()) != '\n' && c != EOF){}
+	return opcao;
+}
+int menufilmesopcao(){
+    int opcao;
+    int c;
+	fflush(stdin);
+	printf("\n  MENU FILMES  \n ");
+	printf("[0] - Encerrar -\n");
+	printf(" [1] - Cadastrar Filmes -\n");
+	printf(" [2] - Listar Filmes -\n");
+	printf(" [3] - Visualizar Filmes -\n");
+	printf(" [4] - Consultar Filmes -\n");
+    printf(" [5] - Editar Filmes -\n");// Atualizar ou Excluir.
+    printf("-Escrever opcao: ");
+	fflush(stdout);
+	scanf("%i", &opcao);
+	while((c= getchar()) != '\n' && c != EOF){}
+
+	return opcao;
+}
+int menuclientes(){
+    int opcao;
+    int c;
+
+	fflush(stdin);
+	printf("\n  MENU CLIENTES  \n ");
+	printf("[0] - Encerrar -\n");
+	printf(" [1] - Cadastrar Clientes -\n");
+	printf(" [2] - Listar Clientes -\n");
+	printf(" [3] - Visualizar Clientes -\n");
+	printf(" [4] - Consultar Clientes -\n");
+    printf(" [5] - Editar Clientes -\n");// Atualizar ou Excluir.
+
+	fflush(stdout);
+	scanf("%i", &opcao);
+	while((c= getchar()) != '\n' && c != EOF){}
+
+	return opcao;
+}
+void menufilmes(){
+    int opcao=-1;
+    while(encerrar==0){
+        opcao=menufilmesopcao();
+        if(opcao==0){
+            printf("\n----END OF THE PROGRAM----");
+            encerrar=0;
+            break;
+        }
+        if(opcao==1){
+            cadastrarfilme();
+        }else if(opcao==2){
+            listarfilmes();
+        }else if(opcao==3){
+            visualizarfilmes();
+        }else if(opcao==4){
+            consultarfilmes();
+        }else if(opcao==5){
+            editarfilmes();
+        }
+    }
+}
+
+void menuprincipal(){
+    int opcao=-1;
+    while(encerrar==0){
+        opcao=menuprincialopcao();
+        if(opcao==0){
+            printf("\n----END OF THE PROGRAM----");
+            encerrar=0;
+            break;
+        }
+        if(opcao==1){
+            menufilmes();
+        }else if(opcao==2){
+            menuclientes();
+        }
+    }
+}
+int main (void){
+    menuprincipal();
+return 0;
+}
