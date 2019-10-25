@@ -21,11 +21,11 @@ void cadastrarfilme(){
 printf("\n   Pagina de Cadastro: \n\n");
   printf("Digite o Titulo: ");
    fflush(stdout);
-    scanf("%s",&filmes.titulo[50]);
+    gets(filmes.titulo);
 
   printf("Digite o Genero: ");
     fflush(stdout);
-    scanf("%s",&filmes.genero[50]);
+    gets(filmes.genero);
 
   printf("Digite o Ano de Producao: ");
     fflush(stdout);
