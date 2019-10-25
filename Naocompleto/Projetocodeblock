@@ -21,11 +21,11 @@ void cadastrarfilme(){
 printf("\n   Pagina de Cadastro: \n\n");
   printf("Digite o Titulo: ");
    fflush(stdout);
-    gets(filmes.titulo);
+    scanf("%s",&filmes.titulo);
 
   printf("Digite o Genero: ");
     fflush(stdout);
-    gets(filmes.genero);
+    scanf("%s",&filmes.genero);
 
   printf("Digite o Ano de Producao: ");
     fflush(stdout);
@@ -34,7 +34,7 @@ printf("\n   Pagina de Cadastro: \n\n");
   printf("Digite o Identificador: ");
   fflush(stdout);
   scanf("%i", &filmes.identificador);
-  
+
   lista_filmes[nfilmes]=filmes;
 	nfilmes++;
 }
@@ -44,14 +44,22 @@ void listarfilmes(){
     }
 }
 void visualizarfilmes(){ //nothing here yet
-
+    Tfilmes filmes;
+		if(filmes.identificador==-1){ // se o usuario digitar qualquer outro numero, nao vai encontrar. Pq o id nao ta cadastrado, e esse -1 é um valor que nao existe.
+			printf("Filme nao encontrado");
+		} else {
+	    printf("\nIdentificador: %i\n", filmes.identificador);
+		printf("Titulo:  %s\n", filmes.titulo);
+		printf("Ano de Producao: %i\n", filmes.ano_producao);
+		printf("Genero: %s\n", filmes.genero);
+	}
 }
 Tfilmes consultarfilmes(){
     int identificador;
     int c;
     Tfilmes filmes;
 filmes.identificador=-1;
-    printf("Escreva o Identificador do Filme: ");
+    printf("\nEscreva o Identificador do Filme: ");
     fflush(stdout);
     scanf("%i",&identificador);
     for(int i=0;i<nfilmes;i++){
@@ -133,10 +141,10 @@ void menufilmes(){
             Tfilmes filmes=consultarfilmes();
               if(filmes.identificador==-1){
                 printf("\n--MOVIE NOT FOUND--\n");
-              }else{
-                visualizarfilmes();
+                }else{
+                    visualizarfilmes();
                 }
-              
+
         }else if(opcao==5){
             editarfilmes();
         }
