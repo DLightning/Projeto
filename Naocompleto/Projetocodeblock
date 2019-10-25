@@ -4,7 +4,7 @@
 #define MAX_FILMES 100 //tamanho da lista de filmes
 #define MAX_CLIENTES 50
 
-typedef struct filmes{
+struct filmes{
 	int identificador;
 	char titulo[50];
 	int ano_producao;
@@ -21,11 +21,11 @@ void cadastrarfilme(){
 printf("\n   Pagina de Cadastro: \n\n");
   printf("Digite o Titulo: ");
    fflush(stdout);
-    gets(filmes.titulo);
+    scanf("%s",&filmes.titulo[50]);
 
   printf("Digite o Genero: ");
     fflush(stdout);
-    gets(filmes.genero);
+    scanf("%s",&filmes.genero[50]);
 
   printf("Digite o Ano de Producao: ");
     fflush(stdout);
@@ -93,7 +93,6 @@ int menufilmesopcao(){
 	fflush(stdout);
 	scanf("%i", &opcao);
 	while((c= getchar()) != '\n' && c != EOF){}
-
 	return opcao;
 }
 int menuclientes(){
@@ -131,7 +130,13 @@ void menufilmes(){
         }else if(opcao==3){
             visualizarfilmes();
         }else if(opcao==4){
-            consultarfilmes();
+            Tfilmes filmes=consultarfilmes();
+              if(filmes.identificador==-1){
+                printf("Filme nao encontrado");
+              }else{
+                visualizarfilmes();
+                }
+              
         }else if(opcao==5){
             editarfilmes();
         }
