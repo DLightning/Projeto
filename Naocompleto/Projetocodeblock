@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #define MAX_FILMES 100 //tamanho da lista de filmes
-#define MAX_CLIENTES 50
 
 struct filmes{
 	int identificador;
@@ -21,11 +20,11 @@ void cadastrarfilme(){
 printf("\n   Pagina de Cadastro: \n\n");
   printf("Digite o Titulo: ");
    fflush(stdout);
-    scanf("%s",&filmes.titulo);
+    gets(filmes.titulo);
 
   printf("Digite o Genero: ");
     fflush(stdout);
-    scanf("%s",&filmes.genero);
+    gets(filmes.genero);
 
   printf("Digite o Ano de Producao: ");
     fflush(stdout);
