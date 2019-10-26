@@ -77,7 +77,7 @@ void excluirfilmes(){
     fflush(stdout);
     gets(filmes.titulo);
 
-    lista_filmes[nfilmes]=filmes;
+    lista_filmes[nfilmes]=filmes; //ele retira o ultimo slot. precisa de ajuste
 	nfilmes--;
 
 }
@@ -152,7 +152,7 @@ void excluirclientes(){
     fflush(stdout);
     gets(clientes.nome);
 
-    lista_clientes[nclientes]=clientes;
+    lista_clientes[nclientes]=clientes; //ele retira o ultimo slot. precisa de ajuste
 	nclientes--;
 }
 //--final das funcoes clientes---
