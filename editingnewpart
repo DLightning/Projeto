@@ -167,6 +167,7 @@ int menuprincialopcao(){
 	printf("Selecionar [0] para Encerrar\n");
 	printf("Selecionar [1] para Menu Filmes\n");
 	printf("Selecionar [2] para Menu Clientes\n");
+	printf("Selecionar [3] para Menu Estoque\n");
 	printf("-Escrever opcao: ");
 	scanf("%i",&opcao);
 	while((c= getchar()) != '\n' && c != EOF){}
@@ -327,9 +328,12 @@ void menuprincipal(){
             menufilmes();
         }else if(opcao==2){
             menuclientes();
+        }else if (opcao==3){
+            menuestoque();
         }
     }
 }
+
 int main (void){
     menuprincipal();
 return 0;
@@ -340,9 +344,8 @@ struct estoque(){
   int identificador;
   int identificadorEstoque;
   char dataEntrada[14];
-  
+ 
 };
-
 typedef struct estoque Testoque;
 
 Testoque lista_estoque[MAX_ESTOQUE];
@@ -352,15 +355,15 @@ int nEstoqueFilme=0;
 void cadastrar_estoque(){
   Testoque estoque;
 printf("\n   Pagina de Cadastro: \n\n");
-  printf("Digite o Titulo: ");
+  printf("Digite o Identificador: ");
    fflush(stdout);
     scanf("%d",&estoque.identificador);
 
-  printf("Digite o Genero: ");
+  printf("Digite o Identificador do Estoque: ");
     fflush(stdout);
     scanf("%d",&estoque.identificadorEstoque);
 
-  printf("Digite o Ano de Producao: ");
+  printf("Digite o Data de Entrada: ");
     fflush(stdout);
     gets(estoque.dataEntrada);
 
