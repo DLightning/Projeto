@@ -374,6 +374,6 @@ printf("\n   Pagina de Cadastro: \n\n");
 void listarestoque(){
     printf("\n LISTA DE ESTOQUE: \n");
     for (int i = 0; i < nEstoqueFilme; ++i) {
-		printf("   %s\n", lista_clientes[i].nome);
+		printf("   %s\n", lista_estoque[i].identificadorEstoque);
     }
 }
