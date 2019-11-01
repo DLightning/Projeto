@@ -206,7 +206,7 @@ printf("\n   Pagina de Cadastro: \n\n");
 
   printf("Digite o Data de Entrada: ");
     fflush(stdout);
-    gets(estoque.dataEntrada);
+    scanf("%s",&estoque.dataEntrada);
 
   lista_estoque[nEstoqueFilme]=estoque;
 	nEstoqueFilme++;
