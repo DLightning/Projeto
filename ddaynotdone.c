@@ -60,7 +60,7 @@ Tfilmes consultarfilmesTitulo(){
 
     for(int i=0;i<nfilmes;i++){
  if(strcmpi(lista_filmes[i].titulo,title)==0){
-    filmes=lista_filmes;
+    filmes=lista_filmes[i];
         }
     }
     return filmes;
@@ -452,7 +452,7 @@ void menuestoque(){
         }else if(opcao==3){
             visualizarestoque();
         }else if(opcao==4){
-            Testoque estoque=consultarestoque();
+            Testoque estoque=consultarestoqueTitulo();
               if(estoque.identificadorE==-1){
                 printf("\n--NOT FOUND--\n");
                 }else{
