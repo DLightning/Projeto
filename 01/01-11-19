@@ -43,7 +43,10 @@ printf("\n   Pagina de Cadastro: \n\n");
 void listarfilmes(){
     printf("\n LISTA DE FILMES: \n");
     for (int i = 0; i < nfilmes; ++i) {
-		printf("   %s\n", lista_filmes[i].titulo );
+		printf("   %s", lista_filmes[i].titulo );
+		printf(" - %s", lista_filmes[i].genero);
+		printf(" - %d - ", lista_filmes[i].ano_producao);
+		printf("%d   \n", lista_filmes[i].identificador);
     }
 }
 void visualizarfilmes(){
@@ -118,7 +121,9 @@ printf("\n   Pagina de Cadastro: \n\n");
 void listarclientes(){
     printf("\n LISTA DE CLIENTES: \n");
     for (int i = 0; i < nclientes; ++i) {
-		printf("   %s\n", lista_clientes[i].nome);
+		printf("   %s", lista_clientes[i].nome);
+		printf(" - %s - ", lista_clientes[i].cpf);
+		printf("%s   \n", lista_clientes[i].email);
     }
 }
 void visualizarclientes(){
@@ -129,7 +134,7 @@ void visualizarclientes(){
 		printf("Email: %s\n", clientes.email);
 	}
 
-	Tclientes consultarclientes(){
+Tclientes consultarclientes(){
     int nome;
     int c;
     Tclientes clientes;
@@ -158,6 +163,69 @@ void excluirclientes(){
 }
 //--final das funcoes clientes---
 
+//struct estoque
+struct estoque{
+  int identificadorE;
+  int identificadorEstoque;
+  char dataEntrada[14];
+
+};
+typedef struct estoque Testoque;
+
+Testoque lista_estoque[MAX_ESTOQUE];
+int nEstoqueFilme=0;
+int ended=0;
+
+//fuctions estoque
+void cadastrarestoque(){
+  Testoque estoque;
+printf("\n   Pagina de Cadastro: \n\n");
+  printf("Digite o Identificador: ");
+   fflush(stdout);
+    scanf("%d",&estoque.identificadorE);
+
+  printf("Digite o Identificador do Estoque: ");
+    fflush(stdout);
+    scanf("%d",&estoque.identificadorEstoque);
+
+  printf("Digite o Data de Entrada: ");
+    fflush(stdout);
+    scanf("%s",&estoque.dataEntrada);
+
+  lista_estoque[nEstoqueFilme]=estoque;
+	nEstoqueFilme++;
+
+}
+void listarestoque(){
+    printf("\n LISTA DE ESTOQUE: \n");
+    for (int i = 0; i < nEstoqueFilme; ++i) {
+        printf("   %d", lista_estoque[i].identificadorE);
+		printf(" - %d - ", lista_estoque[i].identificadorEstoque);
+		printf("%s   \n", lista_estoque[i].dataEntrada);
+    }
+}
+void visualizarestoque(){
+    Testoque estoque;
+
+		printf("\nID:  %d\n", estoque.identificadorE);
+		printf("ID Estoque: %d\n", estoque.identificadorEstoque);
+		printf("Data de Entrada: %s\n", estoque.dataEntrada);
+	}
+Testoque consultarestoque(){
+    int identificadorE;
+    int c;
+    Testoque estoque;
+    printf("\nEscreva o ID: ");
+    fflush(stdout);
+    scanf("%d",&identificadorE);
+    for(int i=0;i<nEstoqueFilme;i++){
+        if(lista_estoque[i].identificadorE==identificadorE){
+            estoque=lista_estoque[i];
+        }
+    }
+    while((c= getchar()) != '\n' && c != EOF){}
+	return estoque;
+}
 //Menus
 int menuprincialopcao(){
     int opcao;
@@ -203,8 +271,9 @@ int menufilmesopcao(){
 	printf("[0] - Encerrar -\n");
 	printf(" [1] - Cadastrar Filmes -\n");
 	printf(" [2] - Listar Filmes -\n");
-	printf(" [3] - Consultar Filmes -\n");
-    printf(" [4] - Editar Filmes -\n");// Atualizar ou Excluir.
+	printf(" [3] - Visualizar Filmes -\n");
+	printf(" [4] - Consultar Filmes -\n");
+    printf(" [5] - Editar Filmes -\n");// Atualizar ou Excluir.
     printf("-Escrever opcao: ");
 	fflush(stdout);
 	scanf("%i", &opcao);
@@ -220,9 +289,29 @@ int menuclientesopcao(){
 	printf("[0] - Encerrar -\n");
 	printf(" [1] - Cadastrar Clientes -\n");
 	printf(" [2] - Listar Clientes -\n");
-	printf(" [3] - Consultar Clientes -\n");
-    printf(" [4] - Editar Clientes -\n");// Atualizar ou Excluir.
+    printf(" [3] - Visualizar Clientes -\n");
+	printf(" [4] - Consultar Clientes -\n");
+    printf(" [5] - Editar Clientes -\n");// Atualizar ou Excluir.
+    printf("-Escrever opcao: ");
+	fflush(stdout);
+	scanf("%i", &opcao);
+	while((c= getchar()) != '\n' && c != EOF){}
 
+	return opcao;
+}
+int menuestoqueopcao(){
+    int opcao;
+    int c;
+
+	fflush(stdin);
+	printf("\n  MENU ESTOQUE  \n ");
+	printf("[0] - Encerrar/Voltar -\n");
+	printf(" [1] - Cadastrar Estoque -\n");
+	printf(" [2] - Listar Estoque -\n");
+	printf(" [2] - Visualizar Estoque -\n");
+	printf(" [4] - Consultar Estoque -\n");
+    printf(" [5] - Editar Estoque -\n");// Atualizar ou Excluir.
+    printf("-Escrever opcao: ");
 	fflush(stdout);
 	scanf("%i", &opcao);
 	while((c= getchar()) != '\n' && c != EOF){}
@@ -263,7 +352,7 @@ void menueditarcliente(){
 }
 void menufilmes(){
     int opcao=-1;
-    while(end==0){
+    while(encerrar==0){
         opcao=menufilmesopcao();
         if(opcao==0){
             printf("\n----END OF THE PROGRAM----");
@@ -275,6 +364,8 @@ void menufilmes(){
         }else if(opcao==2){
             listarfilmes();
         }else if(opcao==3){
+            visualizarfilmes();
+        }else if(opcao==4){
             Tfilmes filmes=consultarfilmes();
               if(filmes.identificador==-1){
                 printf("\n--404ERROR-MOVIE NOT FOUND--\n");
@@ -282,15 +373,14 @@ void menufilmes(){
                     visualizarfilmes();
                 }
 
-        }else if(opcao==4){
+        }else if(opcao==5){
             menueditarfilme();
         }
     }
 }
-
 void menuclientes(){
     int opcao=-1;
-    while(encerrar==0){
+    while(end==0){
         opcao=menuclientesopcao();
         if(opcao==0){
             printf("\n----END OF THE PROGRAM----");
@@ -302,19 +392,49 @@ void menuclientes(){
         }else if(opcao==2){
             listarclientes();
         }else if(opcao==3){
+            visualizarclientes();
+        }else if(opcao==4){
             Tclientes clientes=consultarclientes();
               if(clientes.nome==-1){
-                printf("\n--404ERROR-MOVIE NOT FOUND--\n");
+                printf("\n--CLIENT NOT FOUND--\n");
                 }else{
                     visualizarclientes();
                 }
 
-        }else if(opcao==4){
+        }else if(opcao==5){
             menueditarcliente();
+
         }
     }
 }
+void menuestoque(){
+    int opcao=-1;
+    while(encerrar==0){
+        opcao=menuestoqueopcao();
+        if(opcao==0){
+            printf("\n----END OF THE PROGRAM----");
+            encerrar=0;
+            break;
+        }
+        if(opcao==1){
+            cadastrarestoque();
+        }else if(opcao==2){
+            listarestoque();
+        }else if(opcao==3){
+            visualizarestoque();
+        }else if(opcao==4){
+            Testoque estoque=consultarestoque();
+              if(estoque.identificadorE==-1){
+                printf("\n--NOT FOUND--\n");
+                }else{
+                    visualizarestoque();
+                }
 
+        }else if(opcao==5){
+            //editarestoque();
+        }
+    }
+}
 void menuprincipal(){
     int opcao=-1;
     while(encerrar==0){
@@ -328,52 +448,12 @@ void menuprincipal(){
             menufilmes();
         }else if(opcao==2){
             menuclientes();
-        }else if (opcao==3){
+        }else if(opcao==3){
             menuestoque();
         }
     }
 }
-
 int main (void){
     menuprincipal();
 return 0;
-}
-
-struct estoque(){
-  
-  int identificador;
-  int identificadorEstoque;
-  char dataEntrada[14];
- 
-};
-typedef struct estoque Testoque;
-
-Testoque lista_estoque[MAX_ESTOQUE];
-int nEstoqueFilme=0;
-
-//cadastro estoque
-void cadastrar_estoque(){
-  Testoque estoque;
-printf("\n   Pagina de Cadastro: \n\n");
-  printf("Digite o Identificador: ");
-   fflush(stdout);
-    scanf("%d",&estoque.identificador);
-
-  printf("Digite o Identificador do Estoque: ");
-    fflush(stdout);
-    scanf("%d",&estoque.identificadorEstoque);
-
-  printf("Digite o Data de Entrada: ");
-    fflush(stdout);
-    gets(estoque.dataEntrada);
-
-  lista_estoque[nEstoqueFilme]=estoque;
-	nEstoqueFilme++;
-	
-}
-void listarestoque(){
-    printf("\n LISTA DE ESTOQUE: \n");
-    for (int i = 0; i < nEstoqueFilme; ++i) {
-		printf("   %s\n", lista_estoque[i].identificadorEstoque);
-    }
 }
