@@ -182,7 +182,7 @@ void excluirclientes(){
 //struct estoque
 struct estoque{
   int identificadorE;
-  int identificadorEstoque;
+  int identificadorFilme;
   char dataEntrada[14];
 
 };
@@ -202,7 +202,7 @@ printf("\n   Pagina de Cadastro: \n\n");
 
   printf("Digite o Identificador do Estoque: ");
     fflush(stdout);
-    scanf("%d",&estoque.identificadorEstoque);
+    scanf("%d",&estoque.identificadorFilme);
 
   printf("Digite o Data de Entrada: ");
     fflush(stdout);
@@ -216,7 +216,7 @@ void listarestoque(){
     printf("\n LISTA DE ESTOQUE: \n");
     for (int i = 0; i < nEstoqueFilme; ++i) {
         printf("   %d", lista_estoque[i].identificadorE);
-		printf(" - %d - ", lista_estoque[i].identificadorEstoque);
+		printf(" - %d - ", lista_estoque[i].identificadorFilme);
 		printf("%s   \n", lista_estoque[i].dataEntrada);
     }
 }
@@ -226,7 +226,7 @@ Testoque consultarestoqueTitulo(){
     Testoque estoque;
     estoque.identificadorE=-1;
     for(int i=0;i<nEstoqueFilme;i++){
-    if(lista_estoque[i].identificadorEstoque==filmes.identificador){
+    if(lista_estoque[i].identificadorFilme==filmes.identificador){
         (lista_estoque);
         estoque=lista_estoque[i];
         }
@@ -237,7 +237,7 @@ void visualizarestoque(){
     Testoque estoque;
 
 		printf("\nID:  %d\n", estoque.identificadorE);
-		printf("ID Estoque: %d\n", estoque.identificadorEstoque);
+		printf("ID Estoque: %d\n", estoque.identificadorFilme);
 		printf("Data de Entrada: %s\n", estoque.dataEntrada);
 	}
 Testoque consultarestoque(){
