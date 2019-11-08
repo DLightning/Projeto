@@ -111,6 +111,7 @@ void excluirfilmes(){
     fflush(stdout);
 
     printf("\nExcluido com sucesso!\n\n");
+    menufilmes();
 
 }
 //--Final de funcoes filmes---
@@ -163,7 +164,7 @@ void visualizarclientes(){
 		printf("\nNome:  %s\n", lista_clientes[x].nome);
 		printf("CPF: %s\n", lista_clientes[x].cpf);
 		printf("Email: %s\n", lista_clientes[x].email);
-
+        fflush(stdout);
         menuclientes();
         }
      }
@@ -253,6 +254,7 @@ void listarestoque(){
         printf("   %d", lista_estoque[i].identificadorE);
 		printf(" - %d - ", lista_filmes[i].identificador);
 		printf("%s   \n", lista_estoque[i].dataEntrada);
+		menuestoque();
     }
 }
 void visualizarestoque(){
@@ -301,7 +303,7 @@ void atualizarestoque(){ //nothing here yet
         printf("Digite o nova Data de Entrada: ");
         fflush(stdout);
 
-    menuclientes();
+    menuestoque();
 
 }
 void excluirestoque(){
@@ -452,7 +454,7 @@ void menueditarestoque(){
             break;
         }
         if(opcao==1){
-            atualizarestoque();
+           atualizarestoque();
         }else if(opcao==2){
             excluirestoque();
         }
@@ -539,7 +541,7 @@ void menuestoque(){
                 }
 
         }else if(opcao==5){
-            //editarestoque();
+            menueditarestoque();
         }
     }
 }
