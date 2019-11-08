@@ -252,6 +252,7 @@ void listarestoque(){
     printf("\n LISTA DE ESTOQUE: \n");
     for (int i = 0; i < nEstoqueFilme; ++i) {
         printf("   %d", lista_estoque[i].identificadorE);
+        printf(" - %s", lista_filmes[i].titulo);
 		printf(" - %d - ", lista_filmes[i].identificador);
 		printf("%s   \n", lista_estoque[i].dataEntrada);
 		menuestoque();
@@ -261,14 +262,13 @@ void visualizarestoque(){
     printf("Insira o ID do Estoque: ");
      fflush(stdout);
         scanf("%d",&x);
-        for(x=0;x<=50;x++);
-
+        for(x=0;x<=50;x++){
 		printf("\nID Estoque:  %d\n", lista_estoque[x].identificadorE);
 		printf("ID Filme: %d\n", lista_filmes[x].identificador);
 		printf("Data de Entrada: %s\n", lista_estoque[x].dataEntrada);
 		menuestoque();
 	}
-
+}
 
 Testoque consultarestoque(){
     printf("Insira o titulo do filme: ");
@@ -477,7 +477,7 @@ void menufilmes(){
             visualizarfilmes();
         }else if(opcao==4){
             Tfilmes filmes=consultarfilmes();
-              if(filmes.identificador==-1){
+              if(lista_filmes[nfilmes].identificador==-1){
                 printf("\n--404ERROR-MOVIE NOT FOUND--\n");
                 }else{
                     visualizarfilmes();
@@ -505,7 +505,7 @@ void menuclientes(){
             visualizarclientes();
         }else if(opcao==4){
             Tclientes clientes=consultarclientes();
-              if(clientes.nome==-1){
+              if(lista_clientes[nclientes].nome==-1){
                 printf("\n--CLIENT NOT FOUND--\n");
                 }else{
                     visualizarclientes();
@@ -519,7 +519,7 @@ void menuclientes(){
 }
 void menuestoque(){
     int opcao=-1;
-    while(encerrar==0){
+    while(ended==0){
         opcao=menuestoqueopcao();
         if(opcao==0){
             printf("\n----END OF THE PROGRAM----");
