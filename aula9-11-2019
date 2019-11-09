@@ -1,0 +1,46 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct filmes{
+    char titulo;
+    char genero;
+    int ano;
+    int id;
+}Tfilmes;
+
+ void menufilmes();
+
+     void cadastrarfilmes(char titulo, char genero, int ano, int id);
+        gets(filmes.titulo);
+        
+     void listarfilmes(int id);
+     void visualizarfilmes(int id);
+     void consultarfilmes(char titulo);
+     void atualizarfilmes(int id, char genero, int ano, int id);
+     void exluirfilmes(int id);
+ 
+ void menuclientes();
+
+     void cadastrarcliente(char nome,char cpf, char email);
+     void listarclientes();
+     void visualizarclientes();
+     void consultarclientes();
+     void atualizarclientes();
+     void exluircliente();
+
+void menuestoque();
+
+     void cadastrarestoque(int ID, int IDfilme, char data);
+     void listarestoque();
+     void visualizarestoque();
+     void consultarestoque();
+     void atualizarestoque();
+     void exluirestoque();
+
+void menualuguel();
+    
+    
+
+int main(){
+
+     return 0;
+}
