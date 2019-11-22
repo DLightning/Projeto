@@ -205,16 +205,19 @@ void atualizarclientes(){ //nothing here yet
 
 }
 void excluirclientes(){
-    Tclientes clientes;
+     printf("\n   Pagina de Exclusao: \n\n");
     printf("Digite o Nome: ");
+    scanf("%d",&x);
+    setbuf(stdin,NULL);
+    x-=1;
+ fflush(stdout);
+    strcpy(lista_clientes[x].nome,"");
+    strcpy(lista_clientes[x].cpf,"");
+    strcpy(lista_clientes[x].email,"");
     fflush(stdout);
-    gets(clientes.nome);
 
-    for(int i=0;i<50;i++){
-        if(lista_clientes[nclientes].nome){
-            nclientes--;
-        }
-    }
+    printf("\nExcluido com sucesso!\n\n");
+    menuclientes();
 }
 //--final das funcoes clientes---
 
@@ -301,13 +304,27 @@ void atualizarestoque(){ //nothing here yet
         scanf("%d",&lista_estoque[x].identificadorFilme);
     setbuf(stdin,NULL);
         printf("Digite o nova Data de Entrada: ");
+    scanf("%s",&lista_estoque[x].dataEntrada);
         fflush(stdout);
 
     menuestoque();
 
 }
 void excluirestoque(){
+ printf("\n   Pagina de Exclusao: \n\n");
+    printf("Digite o Identificador do Estoque: ");
+    scanf("%d",&x);
+    setbuf(stdin,NULL);
+    x-=1;
+ fflush(stdout);
+    strcpy(lista_estoque[x].dataEntrada,"");
+    lista_estoque[x].identificadorE = 0;
+    lista_estoque[x].identificadorFilme = 0;
+    fflush(stdout);
 
+    printf("\nExcluido com sucesso!\n\n");
+
+    menuestoque();
 }
 //Menus
 int menuprincialopcao(){
