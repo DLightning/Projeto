@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -148,7 +147,7 @@ printf("\n   Pagina de Cadastro: \n\n");
 
 	nclientes++;
 }
-void listarclientes(){
+void listarclientes(){ //mostra erro (todos os slots)
     printf("\n LISTA DE CLIENTES: \n");
     for (int i = 0; i <=nclientes; ++i){
         nclientes-=1;
@@ -183,7 +182,7 @@ Tclientes consultarclientes(){
         }
     }
 }
-void atualizarclientes(){
+void atualizarclientes(){ //nothing here yet
     printf("\n   Pagina de Atualizacao: \n\n");
     printf("Digite o id: ");
     scanf("%i", &x);
@@ -259,6 +258,7 @@ void listarestoque(){
         printf(" - %s", lista_filmes[i].titulo);
 		printf(" - %d - ", lista_filmes[i].identificador);
 		printf("%s   \n", lista_estoque[i].dataEntrada);
+		menuestoque();
     }
 }
 void visualizarestoque(){
@@ -284,8 +284,8 @@ Testoque consultarestoque(){
 		printf("Ano de Producao: %i\n", lista_filmes[x].ano_producao);
 	    printf("Identificador: %i\n", lista_filmes[x].identificador);
 	    printf("Data de entrada: %s", lista_estoque[x].dataEntrada);
+	    menuestoque();
         }
-        menuestoque();
    }
 }
 void atualizarestoque(){ //nothing here yet
@@ -317,9 +317,11 @@ void excluirestoque(){
     setbuf(stdin,NULL);
     x-=1;
  fflush(stdout);
+    strcpy(lista_filmes[x].titulo,"");
     strcpy(lista_estoque[x].dataEntrada,"");
     lista_estoque[x].identificadorE = 0;
     lista_estoque[x].identificadorFilme = 0;
+
     fflush(stdout);
 
     printf("\nExcluido com sucesso!\n\n");
@@ -433,15 +435,15 @@ void menueditarfilme(){
     int opcao=-1;
     while(encerrar==0){
         opcao=menueditarfilmeopcao();
-       switch(opcao){
-        case 1:
-          atualizarfilmes();
+        if(opcao==0){
+            printf("\n----END OF THE PROGRAM----");
+            encerrar=0;
             break;
-        case 2:
-           excluirfilmes();
-            break;
-        default:
-            menufilmes();
+        }
+        if(opcao==1){
+            atualizarfilmes();
+        }else if(opcao==2){
+            excluirfilmes();
         }
     }
 }
@@ -449,15 +451,15 @@ void menueditarcliente(){
     int opcao=-1;
     while(encerrar==0){
         opcao=menueditarclienteopcao();
-        switch(opcao){
-        case 1:
-          atualizarclientes();
+        if(opcao==0){
+            printf("\n----END OF THE PROGRAM----");
+            encerrar=0;
             break;
-        case 2:
-         excluirclientes();
-            break;
-        default:
-            menuclientes();
+        }
+        if(opcao==1){
+            atualizarclientes();
+        }else if(opcao==2){
+            excluirclientes();
         }
     }
 }
@@ -465,15 +467,15 @@ void menueditarestoque(){
     int opcao=-1;
     while(encerrar==0){
         opcao=menueditarestoqueopcao();
-    switch(opcao){
-        case 1:
-          atualizarestoque();
+        if(opcao==0){
+            printf("\n----END OF THE PROGRAM----");
+            encerrar=0;
             break;
-        case 2:
-         excluirestoque();
-            break;
-        default:
-            menuestoque();
+        }
+        if(opcao==1){
+           atualizarestoque();
+        }else if(opcao==2){
+            excluirestoque();
         }
     }
 }
@@ -482,31 +484,26 @@ void menufilmes(){
     while(encerrar==0){
         opcao=menufilmesopcao();
         if(opcao==0){
-            menuprincipal();
+            printf("\n----END OF THE PROGRAM----");
             end=0;
             break;
         }
         if(opcao==1){
             cadastrarfilme();
-            break;
         }else if(opcao==2){
             listarfilmes();
-            break;
         }else if(opcao==3){
             visualizarfilmes();
-            break;
         }else if(opcao==4){
             Tfilmes filmes=consultarfilmes();
               if(lista_filmes[nfilmes].identificador==-1){
                 printf("\n--404ERROR-MOVIE NOT FOUND--\n");
                 }else{
                     visualizarfilmes();
-                    break;
                 }
 
         }else if(opcao==5){
             menueditarfilme();
-            break;
         }
     }
 }
@@ -515,31 +512,27 @@ void menuclientes(){
     while(end==0){
         opcao=menuclientesopcao();
         if(opcao==0){
-            menuprincipal();
+            printf("\n----END OF THE PROGRAM----");
             encerrar=0;
             break;
         }
         if(opcao==1){
             cadastrarcliente();
-            break;
         }else if(opcao==2){
             listarclientes();
-            break;
         }else if(opcao==3){
             visualizarclientes();
-            break;
         }else if(opcao==4){
             Tclientes clientes=consultarclientes();
               if(lista_clientes[nclientes].nome==-1){
                 printf("\n--CLIENT NOT FOUND--\n");
                 }else{
                     visualizarclientes();
-                    break;
                 }
 
         }else if(opcao==5){
             menueditarcliente();
-                break;
+
         }
     }
 }
@@ -548,31 +541,26 @@ void menuestoque(){
     while(ended==0){
         opcao=menuestoqueopcao();
         if(opcao==0){
-            menuprincipal();
+            printf("\n----END OF THE PROGRAM----");
             encerrar=0;
             break;
         }
         if(opcao==1){
             cadastrarestoque();
-            break;
         }else if(opcao==2){
             listarestoque();
-            break;
         }else if(opcao==3){
             visualizarestoque();
-            break;
         }else if(opcao==4){
             Testoque estoque=consultarestoque();
               if(lista_filmes[nfilmes].titulo==-1){
                 printf("\n--NOT FOUND--\n");
                 }else{
                     visualizarestoque();
-                    break;
                 }
 
         }else if(opcao==5){
             menueditarestoque();
-            break;
         }
     }
 }
@@ -587,13 +575,10 @@ void menuprincipal(){
         }
         if(opcao==1){
             menufilmes();
-            break;
         }else if(opcao==2){
             menuclientes();
-            break;
         }else if(opcao==3){
             menuestoque();
-            break;
         }
     }
 }
